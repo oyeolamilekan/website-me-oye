@@ -2,6 +2,13 @@ import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/popemoji/support")({
   component: RouteComponent,
+  head: () => ({
+    meta: [
+      {
+        title: "Support | Popemoji",
+      },
+    ],
+  }),
 });
 
 function RouteComponent() {

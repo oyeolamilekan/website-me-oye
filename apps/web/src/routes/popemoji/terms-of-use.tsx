@@ -2,6 +2,13 @@ import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/popemoji/terms-of-use")({
   component: TermsOfUseComponent,
+  head: () => ({
+    meta: [
+      {
+        title: "Terms of Use | Popemoji",
+      },
+    ],
+  }),
 });
 
 function TermsOfUseComponent() {
