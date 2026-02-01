@@ -10,33 +10,72 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as PopemojiTermsOfUseRouteImport } from './routes/popemoji/terms-of-use'
+import { Route as PopemojiSupportRouteImport } from './routes/popemoji/support'
+import { Route as PopemojiPrivacyRouteImport } from './routes/popemoji/privacy'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PopemojiTermsOfUseRoute = PopemojiTermsOfUseRouteImport.update({
+  id: '/popemoji/terms-of-use',
+  path: '/popemoji/terms-of-use',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PopemojiSupportRoute = PopemojiSupportRouteImport.update({
+  id: '/popemoji/support',
+  path: '/popemoji/support',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PopemojiPrivacyRoute = PopemojiPrivacyRouteImport.update({
+  id: '/popemoji/privacy',
+  path: '/popemoji/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/popemoji/privacy': typeof PopemojiPrivacyRoute
+  '/popemoji/support': typeof PopemojiSupportRoute
+  '/popemoji/terms-of-use': typeof PopemojiTermsOfUseRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/popemoji/privacy': typeof PopemojiPrivacyRoute
+  '/popemoji/support': typeof PopemojiSupportRoute
+  '/popemoji/terms-of-use': typeof PopemojiTermsOfUseRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/popemoji/privacy': typeof PopemojiPrivacyRoute
+  '/popemoji/support': typeof PopemojiSupportRoute
+  '/popemoji/terms-of-use': typeof PopemojiTermsOfUseRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/popemoji/privacy'
+    | '/popemoji/support'
+    | '/popemoji/terms-of-use'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/popemoji/privacy' | '/popemoji/support' | '/popemoji/terms-of-use'
+  id:
+    | '__root__'
+    | '/'
+    | '/popemoji/privacy'
+    | '/popemoji/support'
+    | '/popemoji/terms-of-use'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  PopemojiPrivacyRoute: typeof PopemojiPrivacyRoute
+  PopemojiSupportRoute: typeof PopemojiSupportRoute
+  PopemojiTermsOfUseRoute: typeof PopemojiTermsOfUseRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +87,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/popemoji/terms-of-use': {
+      id: '/popemoji/terms-of-use'
+      path: '/popemoji/terms-of-use'
+      fullPath: '/popemoji/terms-of-use'
+      preLoaderRoute: typeof PopemojiTermsOfUseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/popemoji/support': {
+      id: '/popemoji/support'
+      path: '/popemoji/support'
+      fullPath: '/popemoji/support'
+      preLoaderRoute: typeof PopemojiSupportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/popemoji/privacy': {
+      id: '/popemoji/privacy'
+      path: '/popemoji/privacy'
+      fullPath: '/popemoji/privacy'
+      preLoaderRoute: typeof PopemojiPrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  PopemojiPrivacyRoute: PopemojiPrivacyRoute,
+  PopemojiSupportRoute: PopemojiSupportRoute,
+  PopemojiTermsOfUseRoute: PopemojiTermsOfUseRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
