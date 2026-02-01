@@ -1,0 +1,3 @@
+{
+  "extends": "@pollik/config/tsconfig.base.json"
+}
